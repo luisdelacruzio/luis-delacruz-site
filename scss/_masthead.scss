@@ -2,20 +2,41 @@
 header.masthead {
   padding-top: 100px;
   padding-bottom: 50px;
+  height: 100vh;
 
   text-align: center;
 
   color: white;
-  background: $theme-success;
+  background: $theme-primary;
   img {
     display: block;
 
     margin: 0 auto 20px;
   }
+  .container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .typed-cursor {
+    animation: blink 1s linear infinite;
+    @extend .name;
+  }
+  @keyframes blink {
+      0% {
+          opacity: 1
+      }
+      50% {
+          opacity: 0
+      }
+      100% {
+          opacity: 1
+      }
+  }
   .intro-text {
     .name {
       font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 2em;
+      font-size: 1.3em;
       font-weight: 700;
 
       display: block;
@@ -27,6 +48,16 @@ header.masthead {
       font-weight: 300;
     }
   }
+
+}
+.navbar.fixed-top.navbar-shrink .navbar-brand {
+  opacity: 1;
+  transition: all .3s ease-in-out;
+}
+
+.navbar.fixed-top:not(.navbar-shrink) .navbar-brand {
+  opacity: 0;
+  transition: all .3s ease-in-out;
 }
 @media(min-width:768px) {
   header.masthead {
@@ -34,7 +65,7 @@ header.masthead {
     padding-bottom: 100px;
     .intro-text {
       .name {
-        font-size: 4.75em;
+        font-size: 3.7em;
       }
       .skills {
         font-size: 1.75em;
