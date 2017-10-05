@@ -112,6 +112,11 @@ section.success {
     .footer-col li a:hover {
       color: #173753; }
 
+.services-header {
+  text-align: center;
+  margin-top: 30px;
+  min-height: 60px; }
+
 #mainNav {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
