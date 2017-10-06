@@ -103,7 +103,8 @@ section.success {
 .about-icons {
   max-width: 150px;
   display: block;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-top: 30px; }
 
 .footer-col li {
   text-align: left; }
@@ -326,6 +327,9 @@ header.masthead {
 .portfolio-modal .modal-backdrop {
   display: none;
   opacity: 0; }
+
+.modal-content {
+  min-height: 100vh; }
 
 .floating-label-form-group {
   position: relative;
