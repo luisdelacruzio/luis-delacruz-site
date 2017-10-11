@@ -133,3 +133,15 @@ section.success {
   margin-top: 30px;
   min-height: 60px;
 }
+
+#feed *:not(.octicon) {
+  text-align: left !important;
+  box-sizing: content-box;
+  &:not(a):not(.small) {
+    color: #212529;
+  }
+}
+.gha-feed a {
+  color: #4183c4 !important;
+  font-weight: 700 !important;
+}
