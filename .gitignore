@@ -1,1 +1,4 @@
 node_modules
+plugins/*/index.html
+plugins/*/bower_components/
+plugins/*/node_modules/
