@@ -1,12 +1,13 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
 var browserSync = require('browser-sync').create();
-var header = require('gulp-header');
-var cleanCSS = require('gulp-clean-css');
-var rename = require("gulp-rename");
-var uglify = require('gulp-uglify');
-var filter = require('gulp-filter');
-var pkg = require('./package.json');
+var header      = require('gulp-header');
+var cleanCSS    = require('gulp-clean-css');
+var rename      = require("gulp-rename");
+var uglify      = require('gulp-uglify');
+var filter      = require('gulp-filter');
+var pkg         = require('./package.json');
+var svgmin      = require('gulp-svgmin');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -61,6 +62,15 @@ gulp.task('minify-js', function() {
     }))
 });
 
+gulp.task('minify-svg', function () {
+    return gulp.src('./img/svg/*.svg')
+        .pipe(svgmin())
+        .pipe(gulp.dest('./img/svg/'))
+        .pipe(browserSync.reload({
+          stream: true
+        }));
+});
+
 // Copy vendor files from /node_modules into /vendor
 // NOTE: requires `npm install` before running!
 gulp.task('copy', function() {
@@ -93,7 +103,7 @@ gulp.task('copy', function() {
 })
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'minify-svg', 'copy']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
