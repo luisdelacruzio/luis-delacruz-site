@@ -8,6 +8,7 @@ var uglify      = require('gulp-uglify');
 var filter      = require('gulp-filter');
 var pkg         = require('./package.json');
 var svgmin      = require('gulp-svgmin');
+var htmlmin     = require('gulp-htmlmin');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -71,6 +72,12 @@ gulp.task('minify-svg', function () {
         }));
 });
 
+gulp.task('minify-html', function() {
+  return gulp.src('./html/index.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./'));
+});
+
 // Copy vendor files from /node_modules into /vendor
 // NOTE: requires `npm install` before running!
 gulp.task('copy', function() {
@@ -103,7 +110,7 @@ gulp.task('copy', function() {
 })
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'minify-svg', 'copy']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'minify-svg', 'minify-html', 'copy']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
