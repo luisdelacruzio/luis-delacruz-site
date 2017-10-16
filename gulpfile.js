@@ -69,13 +69,16 @@ gulp.task('minify-svg', function () {
         .pipe(gulp.dest('./img/svg/'))
         .pipe(browserSync.reload({
           stream: true
-        }));
+        }))
 });
 
 gulp.task('minify-html', function() {
   return gulp.src('./html/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
 });
 
 // Copy vendor files from /node_modules into /vendor
@@ -126,6 +129,7 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('css/*.css', ['minify-css']);
   gulp.watch('js/*.js', ['minify-js']);
+  gulp.watch('html/*.html',['minify-html']);
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
