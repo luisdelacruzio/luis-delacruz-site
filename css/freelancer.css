@@ -113,7 +113,7 @@ section.success {
     .footer-col li a:hover {
       color: #173753; }
 
-.services-header {
+.skills-header {
   text-align: center;
   margin-top: 30px;
   min-height: 60px; }
@@ -130,6 +130,14 @@ section.success {
 
 .gha-user-info a {
   font-size: 15px; }
+
+.side-information {
+  margin-top: 30px; }
+  @media (min-width: 992px) {
+    .side-information {
+      margin-left: 120px; }
+      .side-information iframe {
+        margin-left: -50px; } }
 
 #mainNav {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
