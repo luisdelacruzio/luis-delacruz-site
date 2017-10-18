@@ -9,12 +9,11 @@ var filter      = require('gulp-filter');
 var pkg         = require('./package.json');
 var svgmin      = require('gulp-svgmin');
 var htmlmin     = require('gulp-htmlmin');
+var concat = require('gulp-concat');
 
 // Set the banner content
 var banner = ['/*!\n',
-  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-  ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' * Luis Delacruz Site\n',
   ' */\n',
   ''
 ].join('');
@@ -34,7 +33,7 @@ gulp.task('sass', function() {
 
 // Minify compiled CSS
 gulp.task('minify-css', ['sass'], function() {
-  return gulp.src('css/freelancer.css')
+  return gulp.src('css/all.css')
     .pipe(cleanCSS({
       compatibility: 'ie8'
     }))
@@ -47,9 +46,36 @@ gulp.task('minify-css', ['sass'], function() {
     }))
 });
 
+gulp.task('concat-scripts', function() {
+  return gulp.src([
+    'vendor/jquery/jquery.min.js',
+    'vendor/popper/popper.min.js',
+    'vendor/bootstrap/js/bootstrap.min.js',
+    'vendor/jquery-easing/jquery.easing.min.js',
+    'js/jqBootstrapValidation.js',
+    'js/contact_me.js',
+    // 'plugins/github-activity/dist/github-activity-0.1.5.min.js',
+    // 'js/gh-activity-init.js',
+    'js/freelancer.min.js'
+  ])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('./js'))
+});
+
+gulp.task('concat-styles', function() {
+  return gulp.src([
+    'vendor/bootstrap/css/bootstrap.min.css',
+    'vendor/font-awesome/css/font-awesome.min.css',
+    'css/freelancer.min.css'
+
+  ])
+    .pipe(concat('all.css'))
+    .pipe(gulp.dest('./css'))
+});
+
 // Minify custom JS
 gulp.task('minify-js', function() {
-  return gulp.src('js/freelancer.js')
+  return gulp.src('js/all.js')
     .pipe(uglify())
     .pipe(header(banner, {
       pkg: pkg
@@ -61,6 +87,7 @@ gulp.task('minify-js', function() {
     .pipe(browserSync.reload({
       stream: true
     }))
+
 });
 
 gulp.task('minify-svg', function () {
@@ -125,10 +152,10 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
+gulp.task('dev', ['browserSync', 'sass', 'minify-html','concat-styles', 'minify-css','concat-scripts', 'minify-js'], function() {
   gulp.watch('scss/*.scss', ['sass']);
-  gulp.watch('css/*.css', ['minify-css']);
-  gulp.watch('js/*.js', ['minify-js']);
+  gulp.watch('css/*.css', ['concat-styles','minify-css']);
+  gulp.watch('js/*.js', ['concat-scripts','minify-js']);
   gulp.watch('html/*.html',['minify-html']);
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('*.html', browserSync.reload);
