@@ -137,6 +137,21 @@ section.success {
       .side-information iframe {
         margin-left: -50px; } }
 
+#skills ul {
+  padding-left: 0; }
+
+#skills h3 {
+  text-align: center;
+  height: 60px;
+  margin-bottom: 20px; }
+
+#skills li {
+  list-style-type: none;
+  max-width: 100px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
 #mainNav {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;

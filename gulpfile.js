@@ -52,11 +52,12 @@ gulp.task('concat-scripts', function() {
     'vendor/popper/popper.min.js',
     'vendor/bootstrap/js/bootstrap.min.js',
     'vendor/jquery-easing/jquery.easing.min.js',
-    'js/jqBootstrapValidation.js',
-    'js/contact_me.js',
+    'js/src/jqBootstrapValidation.js',
+    'js/src/contact_me.js',
     // 'plugins/github-activity/dist/github-activity-0.1.5.min.js',
     // 'js/gh-activity-init.js',
-    'js/freelancer.min.js'
+    'js/src/freelancer.min.js',
+    'plugins/jquery.lazy/jquery.lazy.min.js'
   ])
     .pipe(concat('all.js'))
     .pipe(gulp.dest('./js'))
@@ -66,7 +67,7 @@ gulp.task('concat-styles', function() {
   return gulp.src([
     'vendor/bootstrap/css/bootstrap.min.css',
     'vendor/font-awesome/css/font-awesome.min.css',
-    'css/freelancer.min.css'
+    'css/freelancer.css'
 
   ])
     .pipe(concat('all.css'))
@@ -155,9 +156,9 @@ gulp.task('browserSync', function() {
 gulp.task('dev', ['browserSync', 'sass', 'minify-html','concat-styles', 'minify-css','concat-scripts', 'minify-js'], function() {
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('css/*.css', ['concat-styles','minify-css']);
-  gulp.watch('js/*.js', ['concat-scripts','minify-js']);
+  gulp.watch('js/src/*.js', ['concat-scripts','minify-js']);
   gulp.watch('html/*.html',['minify-html']);
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('*.html', browserSync.reload);
-  gulp.watch('js/**/*.js', browserSync.reload);
+  gulp.watch('js/*.js', browserSync.reload);
 });
