@@ -164,6 +164,9 @@ section.success {
   margin-top: 20px;
   margin-bottom: 20px; }
 
+.navbar-shrink {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
 #mainNav {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
