@@ -67,7 +67,8 @@ gulp.task('concat-styles', function() {
   return gulp.src([
     'vendor/bootstrap/css/bootstrap.min.css',
     'vendor/font-awesome/css/font-awesome.min.css',
-    'css/freelancer.css'
+    'css/freelancer.css',
+    'plugins/devicon/devicon.min.css'
 
   ])
     .pipe(concat('all.css'))

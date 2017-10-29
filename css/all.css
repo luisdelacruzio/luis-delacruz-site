@@ -163,6 +163,13 @@ section.success {
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px; }
+  #skills li:first-of-type:not(:last-of-type) {
+    margin-right: 30px; }
+  #skills li:last-of-type:not(:first-of-type) {
+    margin-left: 30px; }
+
+#skills i {
+  font-size: 80px; }
 
 .navbar-shrink {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
